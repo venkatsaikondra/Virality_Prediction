@@ -1,0 +1,13 @@
+# Virtual environment
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Large models
+*.pt
+*.pth
+
+# Mac files
+.DS_Store
