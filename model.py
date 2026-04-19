@@ -8,8 +8,10 @@ class MultiModalModel(nn.Module):
 
         self.bert = AutoModel.from_pretrained("distilbert-base-uncased")
 
+        # ✅ EXACT SAME AS TRAINING
         self.numeric_net = nn.Sequential(
             nn.Linear(2, 32),
+            nn.BatchNorm1d(32),
             nn.ReLU(),
             nn.Dropout(0.3),
             nn.Linear(32, 16)
@@ -19,7 +21,10 @@ class MultiModalModel(nn.Module):
             nn.Linear(768 + 16, 128),
             nn.ReLU(),
             nn.Dropout(0.4),
-            nn.Linear(128, 1)
+            nn.Linear(128, 64),
+            nn.ReLU(),
+            nn.Dropout(0.3),
+            nn.Linear(64, 1)
         )
 
     def forward(self, input_ids, attention_mask, numeric):

@@ -12,7 +12,7 @@ model.load_state_dict(torch.load("model/model.pt", map_location=device))
 model.eval()
 
 # Load tokenizer
-tokenizer = AutoTokenizer.from_pretrained("model/tokenizer")
+tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased")
 
 # Load scaler
 scaler = joblib.load("model/scaler.pkl")
@@ -52,8 +52,8 @@ def predict_viral(title, comments, age_hours):
 # 🔥 Test
 if __name__ == "__main__":
     prob, label = predict_viral(
-        "Amazing data visualization about global warming",
-        50,
+        "Rape cases in India",
+        10,
         2
     )
 
